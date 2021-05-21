@@ -1,6 +1,16 @@
-module.exports = app =>{
+const Agendamento = require('../models/Agendamento');
 
-    app.get('/',(req,resp) => {
-        resp.send('Servidor Ok');
+module.exports = app => {
+
+    app.get('/agendamentos',(req,resp) => {
+        Agendamento.listagem(resp);
+        
+    });
+
+    app.post('/agendamentos',(req, resp) =>{
+        const agendamento = req.body;
+
+        Agendamento.inserir(agendamento,resp)
+        
     });
 };
