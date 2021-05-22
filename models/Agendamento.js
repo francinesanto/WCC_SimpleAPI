@@ -14,6 +14,16 @@ class Agendamento {
         });
     };
 
+    buscaPorId(id,resp){
+        const sql = 'SELECT * FROM agendamentos WHERE id = ?';
+        conexao.query(sql,id,(error, result) =>{
+            if(error){
+                resp.status(400).json(error);
+            }
+            resp.status(201).json(result)
+        });
+    }
+
     inserir(agendamento, resp){
         const sql = `INSERT INTO agendamentos SET ?`;
 
@@ -22,7 +32,7 @@ class Agendamento {
 
         const agendamentoComData = {...agendamento,data_agendamento,data_servico};
         const ehDataValida = moment(agendamento.data_servico).isSameOrAfter(data_agendamento);
-        const ehNomeValido =  agendamento.nome_cliente.lenght > 2;
+        const ehNomeValido =  agendamento.nome_cliente.length > 2;
 
         const validaçoes = [
             {
@@ -46,7 +56,7 @@ class Agendamento {
             if (error){
                 throw Error
             };
-            console.log(results);
+            resp.status(201).json(results);
 
         });
 

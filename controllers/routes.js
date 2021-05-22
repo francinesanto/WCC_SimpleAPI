@@ -7,10 +7,19 @@ module.exports = app => {
         
     });
 
+   app.get('/agendamento/:id', (req, resp) =>{
+       const id = parseInt(req.params.id)
+       Agendamento.buscaPorId(id, resp)
+   });
+
     app.post('/agendamentos',(req, resp) =>{
         const agendamento = req.body;
 
         Agendamento.inserir(agendamento,resp)
         
     });
+
+    app.put('/agendamento',(req,resp) =>{
+        const
+    })
 };
