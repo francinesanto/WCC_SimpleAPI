@@ -19,14 +19,14 @@ module.exports = app => {
         
     });
 
-    app.put('/agendamentos:id',(req,resp) =>{
+    app.put('/agendamentos/:id',(req,resp) =>{
         const id = parseInt(req.params.id)
         const agendamento = req.body;
 
         Agendamento.alterar(id,agendamento,resp);
     });
 
-    app.delete('agendamentos:id', (req,resp) => {
+    app.delete('/agendamentos/:id', (req,resp) => {
         const id = parseInt(req.params.id);
         Agendamento.remover(id, resp)
     });
