@@ -7,7 +7,7 @@ module.exports = app => {
         
     });
 
-   app.get('/agendamento/:id', (req, resp) =>{
+   app.get('/agendamentos/:id', (req, resp) =>{
        const id = parseInt(req.params.id)
        Agendamento.buscaPorId(id, resp)
    });
@@ -19,7 +19,15 @@ module.exports = app => {
         
     });
 
-    app.put('/agendamento',(req,resp) =>{
-        const
-    })
+    app.put('/agendamentos:id',(req,resp) =>{
+        const id = parseInt(req.params.id)
+        const agendamento = req.body;
+
+        Agendamento.alterar(id,agendamento,resp);
+    });
+
+    app.delete('agendamentos:id', (req,resp) => {
+        const id = parseInt(req.params.id);
+        Agendamento.remover(id, resp)
+    });
 };
